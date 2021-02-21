@@ -1,7 +1,6 @@
 FROM ubuntu:18.04
 
-
-# Set the ARGsa
+# Set the ARGs
 ARG spark_version="2.4.7"
 ARG spark_nlp_version="2.7.4"
 ARG hadoop_version="2.7"
@@ -107,7 +106,7 @@ RUN cp -p "$SPARK_HOME/conf/spark-defaults.conf.template" "$SPARK_HOME/conf/spar
     echo 'spark.driver.extraJavaOptions="-Dio.netty.tryReflectionSetAccessible=true"' >> $SPARK_HOME/conf/spark-defaults.conf && \
     echo 'spark.executor.extraJavaOptions="-Dio.netty.tryReflectionSetAccessible=true"' >> $SPARK_HOME/conf/spark-defaults.conf
 
-WORKDIR "${HOME}" 
+WORKDIR "${HOME}"/workspace
 #USER "${USER}"
 
 EXPOSE 8888 4040 4041 4042 9083
