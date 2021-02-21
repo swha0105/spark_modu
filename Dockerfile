@@ -3,6 +3,7 @@ FROM ubuntu:18.04
 
 # Set the ARGsa
 ARG spark_version="2.4.7"
+ARG spark_nlp_version="2.7.4"
 ARG hadoop_version="2.7"
 ARG openjdk_version="8"
 ARG python_version="3.7.10"
@@ -70,7 +71,7 @@ ENV PYSPARK_PYTHON=python \
     PYSPARK_DRIVER_PYTHON=python
 
 RUN pip install --no-cache-dir --upgrade pip setuptools wheel && \
-    pip install --no-cache-dir pandas jupyterlab pyspark=="${APACHE_SPARK_VERSION}" spylon-kernel==0.4.* pyarrow==2.0.* && \
+    pip install --no-cache-dir pandas jupyterlab spark-nlp=="${spark_nlp_version}" pyspark=="${APACHE_SPARK_VERSION}" spylon-kernel==0.4.* pyarrow==2.0.* && \
     python -m spylon_kernel install --sys-prefix && \
     # pyenv
     echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc && \
