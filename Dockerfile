@@ -54,7 +54,7 @@ RUN apt-get -y update && \
 ENV USER shyeon
 ENV HOME /home/"${USER}"
 RUN useradd -rm -d "${HOME}" -s /bin/bash -g root -G sudo -u 1001 "${USER}"
-USER $USER
+#USER $USER
 
 
 # Python installation using pyenv
@@ -107,7 +107,7 @@ RUN cp -p "$SPARK_HOME/conf/spark-defaults.conf.template" "$SPARK_HOME/conf/spar
     echo 'spark.executor.extraJavaOptions="-Dio.netty.tryReflectionSetAccessible=true"' >> $SPARK_HOME/conf/spark-defaults.conf
 
 WORKDIR "${HOME}" 
-USER "${USER}"
+#USER "${USER}"
 
 EXPOSE 8888 4040 4041 4042 9083
-CMD ["jupyter", "lab", "--port=8888", "--no-browser", "--ip=0.0.0.0"]
+CMD ["jupyter", "lab", "--port=8888", "--no-browser", "--allow-root", "--ip=0.0.0.0"]
