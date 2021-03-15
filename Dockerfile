@@ -104,7 +104,9 @@ RUN ln -s "spark-${APACHE_SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}" spark && \
 ## see: https://github.com/apache/spark/pull/27356, https://spark.apache.org/docs/latest/#downloading
 RUN cp -p "$SPARK_HOME/conf/spark-defaults.conf.template" "$SPARK_HOME/conf/spark-defaults.conf" && \
     echo 'spark.driver.extraJavaOptions="-Dio.netty.tryReflectionSetAccessible=true"' >> $SPARK_HOME/conf/spark-defaults.conf && \
-    echo 'spark.executor.extraJavaOptions="-Dio.netty.tryReflectionSetAccessible=true"' >> $SPARK_HOME/conf/spark-defaults.conf
+    echo 'spark.executor.extraJavaOptions="-Dio.netty.tryReflectionSetAccessible=true"' >> $SPARK_HOME/conf/spark-defaults.conf && \
+    curl -o $SPARK_HOME/jars/spark-xml_2.11-0.12.0.jar https://repo1.maven.org/maven2/com/databricks/spark-xml_2.11/0.12.0/spark-xml_2.11-0.12.0.jar
+
 
 WORKDIR "${HOME}"/workspace
 #USER "${USER}"
