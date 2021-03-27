@@ -6,7 +6,8 @@ services:
         # build: . 
         container_name: spark-nlp
         volumes:
-            - ~/workspace/apache-project/spark-nlp:/home/shyeon/workspace
+                #            - ~/workspace/apache-project/spark-nlp:/home/shyeon/workspace
+            - ~/workspace/spark-nlp:/home/shyeon/workspace
         ports:
             - 8888:8888
             - 4040:4040
